@@ -1,0 +1,73 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="mainApp">
+
+<head>
+  <title>MainApp</title>
+  <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/paper.css" rel="stylesheet">
+  <link href="libs/bootstrap-additions/dist/bootstrap-additions.min.css" rel="stylesheet">
+  <link href="libs/AngularJS-Toaster/toaster.min.css" rel="stylesheet">
+  <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  
+  <!-- Angular -->
+  <script src="libs/angular/angular.min.js"></script>
+  <script src="libs/angular-resource/angular-resource.min.js"></script>
+  <script src="libs/angular-animate/angular-animate.min.js"></script>
+  <script src="libs/angular-route/angular-route.js"></script>`
+
+  <!-- Libs -->
+  <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.js"></script> 
+
+  <!-- App -->
+  <script src="app/app.main.js"></script>
+  <script src="assets.js"></script>
+  <script> 
+    function loadScripts(_script){ 
+      var script = document.createElement("script");
+      script.src = _script;
+      document.body.appendChild(script);
+    };
+    (() => {
+      var directory = 'app';
+      _.forEach(assets, (folder, path) => {
+        if(_.isObject(folder))
+          _.forEach(folder, file => {
+            loadScripts(`${directory}/${path}/${file}`);
+          }); 
+      })
+    })();
+  </script>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">App</a>
+      </div>
+      
+      <div ui-view="search"></div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref="search" ui-sref-active="active">Search</a></li>
+          <li><a ui-sref="create" ui-sref-active="active">Contact</a></li>
+          <li><a ui-sref="create" ui-sref-active="active"> Login </a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container main-content">
+    <toaster-container></toaster-container>
+    <div class="row">
+      <!-- <div ng-view></div> -->
+      <ui-view></ui-view>
+    </div>
+  </div>
+</body>
+
+</html>
