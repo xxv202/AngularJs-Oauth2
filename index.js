@@ -1,7 +1,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var serveStatic = require('serve-static');
 
 const app = express();
 console.log(path.join(__dirname, 'src'));

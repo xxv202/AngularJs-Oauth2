@@ -13,8 +13,7 @@
 * choose angular@1.8 if it was required
 * check src/libs exist?
 if not, copy bower_components into src/libs
-- [ ] cp -r bower_componets src/libs
+- [ ] cp -r bower_components src/libs
 # Install host service  
-- [ ] npm install -g http-server
-# Start client
-- [ ] http-server src/
+- [ ] npm install
+- [ ] node index.js
