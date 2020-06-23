@@ -3,11 +3,17 @@
   
   angular
   .module("mainApp")
-  .controller("ExampleController", function(
+  .controller("MainController", function(
     $scope,
     $state,
   ){
-    // code here
+
+    /* check session login */
+    $state.go('login');
+    
+    $scope.changeState = (state) => {
+      $state.go(state);
+    }
   })
 
 })();

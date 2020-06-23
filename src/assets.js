@@ -5,16 +5,16 @@ var assets = {
         'login.controller.js'
     ], 
     directives: [
-        'app.directive.js',
-        'spinner.directive.js'
+        // 'app.directive.js',
+        // 'spinner.directive.js'
     ],
     filters: [
-        'app.filter.js',
+        // 'app.filter.js',
     ],
     services: [
-        'app.service.js',
-        'api.service.js',
-        'contact.service.js'
+        // 'app.service.js',
+        // 'api.service.js',
+        // 'contact.service.js'
     ],
     routes: [
         'app.route.js',

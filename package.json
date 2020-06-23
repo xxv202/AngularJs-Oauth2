@@ -10,7 +10,10 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "serve-static": "^1.14.1"
+  },
   "devDependencies": {
     "bower": "^1.8.0",
     "json-server": "^0.9.6",

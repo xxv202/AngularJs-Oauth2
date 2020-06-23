@@ -5,23 +5,20 @@
     .module("mainApp")
     .config(['$stateProvider', '$urlRouterProvider', '$routeProvider', 
       function($stateProvider, $urlRouterProvider, $routeProvider) {
-      console.log('init ', $stateProvider);
       var states = [
-        {
-          name: 'index',
-          url: '/',
-          views: {
-            templateUrl: 'templates/example.html',
-            controller: 'ExampleController'
-          }
-        },
         {
           name: 'login',
           url: '/login',
-          views: {
-            templateUrl: 'templates/login.html',
-            controller: 'LoginController'
-          }
+          templateUrl: 'templates/login.html',
+        },
+        { name: 'contact',
+          url: '/contact',
+          templateUrl: 'templates/contact.html'
+        },
+        {
+          name: 'contact.detail',
+          url: '/contact/:contactId',
+          templateUrl: 'templates/defail.html'
         }
       ];
 

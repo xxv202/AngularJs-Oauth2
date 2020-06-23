@@ -1,13 +1,10 @@
-(function (){
-  'use strict';
-  
+
   angular
   .module("mainApp")
-  .controller("LoginController", function(
+  .controller('LoginController', function(
     $scope,
     $state,
   ) {
     $scope.username = 'phongdeptrai@gmeochamcom';
     console.log($scope.username);
   })
-})();
