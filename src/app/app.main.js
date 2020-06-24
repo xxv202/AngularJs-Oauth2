@@ -5,7 +5,9 @@
   .module("mainApp", [
     "ngResource",
     "ui.router",
-    "ngRoute"
+    "ngRoute",
+    "ngCookies",
+    "base64"
   ]);
   
 })();
