@@ -3,7 +3,7 @@
   angular
   .module("mainApp")
   .factory("HelperAPI", function($resource, $http) {
-    return { 
+    return {
       call: function(data) {
         return $http({
           method: _.get(data, 'method', 'GET'),
@@ -13,6 +13,9 @@
             `redirect_uri=${data.params.redirect_uri}`,
           headers: _.get(data, 'headers', {}),
         });
+      },
+      getContacts: function(data){
+        return true;
       }
     }
   })

@@ -25,7 +25,7 @@
     }
     var needLogin = true;
     function check(){
-      /* check login */
+      /* check login step 3*/
       $rootScope.credentials = {
         'access_token' : LocalStorage.get('access_token') || undefined
       };
@@ -34,9 +34,12 @@
       /* check login */
       if(!needLogin) { logInResult(true); return; }
 
-      /* get code from result step 1*/
+      /* get code from result step 2*/
       var code = $cookies.get('code');
       console.log(`code = ${code}`);
+
+      needLogin &= code;
+
       if(!code) { logInResult(false); return; }   
       /* base64 encode */
       var x = $base64.encode(query.params.client_id+':'+query.params.client_secret);
@@ -64,23 +67,24 @@
         _.forOwn(credentials, (value, key) => {
           LocalStorage.set(key, value);
         });
-        resultLogin(true);
+        logInResult(true);
       })
       .catch(error => {
-        resultLogin(false);
+        logInResult(false);
         console.error(error);
       })
     
     };
     check();
     if(!needLogin) return;
-    /* start get code step 1 */
+    /* start get code step 1*/
     $window.location.href = `${query.url}?response_type=${query.params.response_type}&client_id=${query.params.client_id}&redirect_uri=${query.params.redirect_uri}&scope=${query.params.scope}&state=${query.params.state}`;
     /*************** FUNCTION ****************/
     function logInResult(result) {
       $scope.resultLogin = result;
       $scope.loggingIn = false;
       console.log('result login -> ', result);
+      $state.go('contact');
     };
 
   })

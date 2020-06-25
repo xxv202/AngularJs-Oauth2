@@ -16,7 +16,7 @@ app.listen(3000, () => {
 app.get('/', function(request, response){
   response.redirect('/src/index.html');
 });
-
+/* step 1 */
 app.get('/callback', (req, res) => {
   console.log(req);
   console.log('result:');

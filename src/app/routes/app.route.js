@@ -19,7 +19,8 @@
         },
         { name: 'contact',
           url: '/contact',
-          templateUrl: 'templates/contact.html'
+          templateUrl: 'templates/contact.html',
+          controller: 'ContactController'
         },
         {
           name: 'contact.detail',
