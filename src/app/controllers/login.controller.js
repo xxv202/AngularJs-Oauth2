@@ -23,7 +23,7 @@
         client_secret: 'Y2ypE5A_oS369fgkfeXd6sILdniInjUmg-IhPHeSgwgqtgoT'
       }
     }
-    var needLogin = true;
+    var needLogin = true, code;
     function check(){
       /* check login step 3*/
       $rootScope.credentials = {
@@ -35,10 +35,8 @@
       if(!needLogin) { logInResult(true); return; }
 
       /* get code from result step 2*/
-      var code = $cookies.get('code');
+      code = $cookies.get('code');
       console.log(`code = ${code}`);
-
-      needLogin &= code;
 
       if(!code) { logInResult(false); return; }   
       /* base64 encode */
@@ -76,7 +74,7 @@
     
     };
     check();
-    if(!needLogin) return;
+    if(!needLogin || code) return;
     /* start get code step 1*/
     $window.location.href = `${query.url}?response_type=${query.params.response_type}&client_id=${query.params.client_id}&redirect_uri=${query.params.redirect_uri}&scope=${query.params.scope}&state=${query.params.state}`;
     /*************** FUNCTION ****************/
@@ -84,7 +82,7 @@
       $scope.resultLogin = result;
       $scope.loggingIn = false;
       console.log('result login -> ', result);
-      $state.go('contact');
+      result && $state.go('contact');
     };
 
   })
