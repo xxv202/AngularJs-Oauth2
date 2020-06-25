@@ -1,13 +1,18 @@
 
   angular
   .module("mainApp")
-  .controller('LoginController', function(
+  .controller('ContactController', function(
     $rootScope,
     $scope,
     $state,
     HelperAPI,
-    LocalStorage
+    LocalStorage,
+    Org
   ) {
-    console.log('hello world');
-    console.log(LocalStorage.get('access_token'));
+    
+    $rootScope.$broadcast('needLoadOrgs', {
+      value: 2
+    });
+    /* require login */
+    LocalStorage.get('access_token');
   })

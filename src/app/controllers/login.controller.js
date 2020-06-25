@@ -82,6 +82,9 @@
       $scope.resultLogin = result;
       $scope.loggingIn = false;
       console.log('result login -> ', result);
+      $rootScope.$broadcast('needLoadOrgs', {
+        value: 1
+      });
       result && $state.go('contact');
     };
 

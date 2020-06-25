@@ -16,6 +16,12 @@
       },
       getContacts: function(data){
         return true;
+      },
+      getOrgs: function(data){
+        return $http(data)
+                .then( result =>{
+                  return result.data;
+                })
       }
     }
   })
