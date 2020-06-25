@@ -30,6 +30,8 @@
     "ngInfiniteScroll": "1.2.1",
     "angular-ui-router": "ui-router#^0.4.2",
     "angular-spinner": "^1.0.1",
-    "angular-route": "^1.4.0"
+    "angular-route": "^1.4.0",
+    "angular-cookies": "^1.8.0",
+    "angular-base64": "^2.0.5"
   }
 }
