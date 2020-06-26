@@ -18,7 +18,7 @@
         response_type : 'code',
         client_id: 'ED7F340B3C6B47E9A53A92FA8E6F94E1',
         redirect_uri: 'http://localhost:3000/callback',
-        scope: 'openid profile email accounting.transactions',
+        scope: 'openid profile email accounting.transactions offline_access',
         state: '123',
         client_secret: 'Y2ypE5A_oS369fgkfeXd6sILdniInjUmg-IhPHeSgwgqtgoT'
       }
@@ -79,6 +79,7 @@
     $window.location.href = `${query.url}?response_type=${query.params.response_type}&client_id=${query.params.client_id}&redirect_uri=${query.params.redirect_uri}&scope=${query.params.scope}&state=${query.params.state}`;
     /*************** FUNCTION ****************/
     function logInResult(result) {
+      if(result) $rootScope.isLogged = true;
       $scope.resultLogin = result;
       $scope.loggingIn = false;
       console.log('result login -> ', result);

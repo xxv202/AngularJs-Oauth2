@@ -9,6 +9,9 @@
             },
             set : (key, value) => {
                 return $window.localStorage.setItem(key, value);
+            },
+            clear: () => {
+                return $window.localStorage.clear();
             }
         }
         return LocalStorage;

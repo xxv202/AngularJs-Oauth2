@@ -2,24 +2,42 @@
   'use strict';
   angular
   .module("mainApp")
-  .factory("Org", function($rootScope) {
+  .factory("Org", function($rootScope, HelperAPI, LocalStorage) {
     return {
-      id: null,
-      pid: 0,
+      current: null,
       listOrgs: [
         {id:'1', name: 'ABC'},
         {id:'2', name: 'Demo'}
       ],
       loadOrg: function() {
         var self = this;
-        return new Promise((res, rej) => {
-          self.id = 'co roi ne';         
-          res(true);
-        });
+        HelperAPI.getOrgs({
+          method: 'GET',
+          url: 'https://api.xero.com/connections',
+          headers: {
+            'Content-Type' : 'application/json',
+            'authorization': "Bear " + LocalStorage.get('access_token'),
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET OPTIONS',
+            'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token'
+          },
+        })
+          .then(data => {
+            console.log('get orgs');
+            self.listOrgs = data;
+            self.current = _.get(self.listOrgs, 0);
+          })
+          .catch(error => {
+            console.error(error);
+            self.listOrgs = [];
+          });
       },
-      current: function() {
+      selectOrg: function(id) {
         var self = this;
-        return self.id;
+        if(!_.size(self.listOrgs)) return self.current;
+        // this.current = _.filter(self.listOrgs, (org) => {
+        //   return _.isEqual(org.id, id);
+        // })
       }
     }
   });

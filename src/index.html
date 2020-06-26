@@ -28,7 +28,8 @@
           <li><a  ui-sref="login" ui-sref-active="active"> Login </a></li> -->
           <li><a ng-click="changeState('search')"> Search</a></li>
           <li><a ng-click="changeState('contact')"> Contact</a></li>
-          <li><a ng-click="changeState('login')"> Login </a></li>
+          <li ng-if="!$root.isLogged"><a ng-click="changeState('login')"> Login </a></li>
+          <li ng-if="$root.isLogged"><a ng-click="logout()"> Logout </a></li>
         </ul>
       </div>
     </div>
@@ -40,7 +41,8 @@
       <div ui-view></div>
     </div>
   </div>
-  
+  <!-- Global method -->
+  <script src="app/services/global.js"></script>
   <!-- Angular -->
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-resource/angular-resource.min.js"></script>
