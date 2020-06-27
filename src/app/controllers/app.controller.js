@@ -21,8 +21,9 @@
     $rootScope.$on('needLoadOrgs', async function (event, data) {
       console.log('needLoadOrgs:', data);
       if(data.value) {
-        var result = await Org.loadOrg();
-        if(result) console.log('ket qua: ', Org.current, Org.listOrgs);
+        // var result = await Org.loadOrg();
+        var result = Org.listOrgs; 
+        if(_.size(result)) console.log('ket qua: ', Org.current, Org.listOrgs, result);
       }
     });
     $scope.changeState = (state) => {
