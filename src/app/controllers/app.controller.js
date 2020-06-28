@@ -25,6 +25,7 @@
       if(data) {
         $rootScope.loadingOrg = true;
         var listOrgs = await Org.listAll();
+        $rootScope.orgs = listOrgs;
         console.log('listContacts:', listOrgs);
         $rootScope.loadingOrg = false; 
         $rootScope.$apply();
@@ -37,6 +38,7 @@
       if(data) {
         $rootScope.loadingContact = true;
         var listContacts = await Contacts.listAll(Org.current);
+        $rootScope.contacts = listContacts;
         console.log('listContacts:', listContacts);
         $rootScope.loadingContact = false; 
         $rootScope.$apply();
