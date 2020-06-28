@@ -21,7 +21,7 @@
 
     function edit(contact, ithis){
       console.log(contact, ithis);
-      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', $scope, { contact : contact } );
+      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', { contact : contact } );
     }
     $scope.delete = deleteContact;
     function deleteContact(contact){
