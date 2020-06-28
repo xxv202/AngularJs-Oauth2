@@ -15,7 +15,6 @@
     /* require contacts */
     if(!_.size(Contacts.listContacts))
       $rootScope.$broadcast('needLoadOrgs', true);
-    
     $scope.edit = edit;
     function edit(){
     }
