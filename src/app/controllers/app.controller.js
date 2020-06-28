@@ -37,7 +37,7 @@
       console.log('needLoadContact:', data);
       if(data) {
         $rootScope.loadingContact = true;
-        var listContacts = await Contacts.listAll(Org.current);
+        var listContacts = await Contacts.listAll(Org.current.tenantId);
         $rootScope.contacts = listContacts;
         console.log('listContacts:', listContacts);
         $rootScope.loadingContact = false; 

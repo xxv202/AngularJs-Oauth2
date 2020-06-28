@@ -7,7 +7,8 @@
     "ui.router",
     "ngRoute",
     "ngCookies",
-    "base64"
+    "base64",
+    "ui.bootstrap"
   ]);
   
 })();

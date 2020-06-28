@@ -8,8 +8,10 @@
     HelperAPI,
     LocalStorage,
     Org,
-    Contacts
+    Contacts,
+    ModalService
   ) {
+
     /* require login */
     if(!LocalStorage.get('access_token')) $state.go('login');
     /* require contacts */
@@ -17,6 +19,9 @@
       $rootScope.$broadcast('needLoadOrgs', true);
     
     $scope.edit = edit;
-    function edit(){
+
+    function edit(contact, ithis){
+      console.log(contact, ithis);
+      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', $scope, contact);
     }
   })
