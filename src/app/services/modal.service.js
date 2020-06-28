@@ -7,7 +7,7 @@
         return new ModalService();
         function ModalService(){
             
-            function openModal(templateName, controllerName, size, contact){
+            function openModal(templateName, controllerName, size, params){
                 var template = `templates/${templateName}`;
                 var modal = $uibModal.open({
                     animation: true,
@@ -17,7 +17,10 @@
                     controller: controllerName,
                     resolve: {
                         Contact: function () {
-                            return contact;
+                            return _.get(params, 'contact', false);
+                        },
+                        error: function() {
+                            return _.get(params, 'error', false);
                         }
                     }
                 });

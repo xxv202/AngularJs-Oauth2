@@ -9,7 +9,8 @@
     $window,
     $cookies,
     $base64,
-    LocalStorage
+    LocalStorage,
+    ErrorService
   ) {
     var query = {
       method: 'GET',
@@ -88,6 +89,8 @@
         //   value: 1
         // });
         $state.go('contact'); 
+      } else {
+        ErrorService.error('Login: fail! Please login again', 1000);
       }
     };
 

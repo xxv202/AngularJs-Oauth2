@@ -26,10 +26,10 @@
         $rootScope.loadingOrg = true;
         var listOrgs = await Org.listAll();
         $rootScope.orgs = listOrgs;
-        console.log('listContacts:', listOrgs);
+        console.log('listOrgs:', listOrgs);
         $rootScope.loadingOrg = false; 
         $rootScope.$apply();
-        $rootScope.$broadcast('needLoadContacts', true);
+        if(Org.current) $rootScope.$broadcast('needLoadContacts', true);
       }
     });
     /* Load Contact */

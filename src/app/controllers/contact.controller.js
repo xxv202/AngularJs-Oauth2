@@ -21,10 +21,14 @@
 
     function edit(contact, ithis){
       console.log(contact, ithis);
-      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', $scope, contact);
+      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', $scope, { contact : contact } );
     }
     $scope.delete = deleteContact;
     function deleteContact(contact){
-      ModalService.openModal('deleteContact.html', 'DeleteContactController', 'lg', contact);
+      ModalService.openModal('deleteContact.html', 'DeleteContactController', 'lg', { contact : contact });
+    }
+    $scope._size = _size;
+    function _size(data) {
+      return _.size(data);
     }
   })

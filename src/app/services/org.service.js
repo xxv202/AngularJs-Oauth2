@@ -2,7 +2,7 @@
   'use strict';
   angular
   .module("mainApp")
-  .factory("Org", function($rootScope, HelperAPI, LocalStorage) {
+  .factory("Org", function($rootScope, HelperAPI, LocalStorage, ErrorService) {
     var self = { 
       current: null,
       listOrgs: [],
@@ -11,6 +11,14 @@
                   method: 'GET',
                   url: `${rootUrl}/orgs`,
                 })
+        // return HelperAPI.getOrgs({
+        //           method: 'GET', 
+        //           url: 'https://api.xero.com/connections',
+        //           headers: {
+        //             'Content-Type': 'application/json',
+        //             'Authorization': "Bearer " + LocalStorage.get('access_token') 
+        //           }
+        //         })
                 .then(data => {
                   self.listOrgs = data;
                   self.current = _.get(self.listOrgs, 0);
@@ -19,6 +27,7 @@
                 .catch(error => {
                   console.error(error);
                   self.listOrgs = [];
+                  ErrorService.error('Can not get data org!', 1000);
                   return [];
                 });
         return;
