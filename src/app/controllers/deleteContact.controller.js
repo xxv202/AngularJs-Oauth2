@@ -3,18 +3,18 @@
   
   angular
   .module("mainApp")
-  .controller("DetailContactController", 
+  .controller("DeleteContactController", 
     function($scope, $uibModalInstance, Contact) {
         console.log('Contacts', Contact);
         $scope.contact = Contact;
         
-        $scope.ok = function () {
+        $scope.close = function () {
            $uibModalInstance.close({
-               edit: 1
+               delete: 1
            });
        };
 
-       $scope.cancel = function () {
+       $scope.dismiss = function () {
            $uibModalInstance.dismiss('cancel');
        };
    })

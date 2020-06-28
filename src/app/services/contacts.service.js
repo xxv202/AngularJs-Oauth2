@@ -6,10 +6,11 @@
     var self = {
       listContacts: [],
       listAll: function() {
-        return HelperAPI.getContacts({
+        return  HelperAPI.getContacts({
                   method: 'GET',
                   url: `${rootUrl}/contacts`,
                 })
+                
                 .then(data => {
                   this.listContacts = data;
                   return data;
