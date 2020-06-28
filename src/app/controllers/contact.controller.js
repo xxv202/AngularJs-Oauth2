@@ -7,11 +7,16 @@
     $state,
     HelperAPI,
     LocalStorage,
-    Org
+    Org,
+    Contacts
   ) {
-    
-    $rootScope.$broadcast('needLoadOrgs', true);
-    // $rootScope.$broadcast('needLoadContacts', true);
     /* require login */
-    LocalStorage.get('access_token');
+    if(!LocalStorage.get('access_token')) $state.go('login');
+    /* require contacts */
+    if(!_.size(Contacts.listContacts))
+      $rootScope.$broadcast('needLoadOrgs', true);
+      
+    $scope.edit = edit;
+    function edit(){
+    }
   })

@@ -17,7 +17,7 @@
       params: {
         response_type : 'code',
         client_id: 'ED7F340B3C6B47E9A53A92FA8E6F94E1',
-        redirect_uri: "http://localhost:3000/callback",
+        redirect_uri: `${rootUrl}/callback`,
         scope: 'openid profile email offline_access accounting.transactions accounting.contacts',
         state: '123',
         client_secret: 'Y2ypE5A_oS369fgkfeXd6sILdniInjUmg-IhPHeSgwgqtgoT'
