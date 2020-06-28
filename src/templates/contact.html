@@ -3,17 +3,6 @@
 <div class="container-xl" ng-if="!$root.loadingOrg">
 	<div class="table-responsive">
 		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2>Manage <b>Employees</b></h2>
-					</div>
-					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
-					</div>
-				</div>
-			</div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -23,10 +12,11 @@
 								<label for="selectAll"></label>
 							</span>
 						</th>
+						<th>ContactID</th>
 						<th>Name</th>
 						<th>Email</th>
 						<th>Address</th>
-						<th>Phone</th>
+						<th>Phones</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -34,20 +24,35 @@
 					<tr ng-if="$root.loadingContact"> 
 						<td class="col-12-sm"> Loading Contact </td>
 					</tr>
-					<tr ng-if="!$root.loadingContact && $root.contacts" ng-repeat=" contact in $root.contacts">
+					<tr ng-if="!$root.loadingContact && $root.contacts" ng-repeat="contact in $root.contacts">
 						<td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
 						</td>
-						<td ng-bind="contact.Name"></td>
-						<td>thomashardy@mail.com</td>
-						<td>89 Chiaroscuro Rd, Portland, USA</td>
-						<td>(171) 555-2222</td>
+						<td>{{contact.ContactID}}</td>
+						<td>{{contact.Name}}</td>
+						<td>{{contact.EmailAddress}}</td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal" ng-click="edit(contact, this)"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<div ng-repeat="address in contact.Addresses">
+								<div>Type: {{address.AddressType}}</div> 
+								<div ng-if="address.AddressLine1">AddressLine: {{address.AddressLine1}}</div> 
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="phone in contact.Phones">
+								<div>Type: {{phone.PhoneType}}</div> 
+								<div ng-if="phone.PhoneNumber">Number: {{phone.PhoneNumber}}</div> 
+							</div>
+						</td>
+						<td>
+							<a href="#editEmployeeModal" class="edit" data-toggle="modal" ng-click="edit(contact, this)">
+								<i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i>
+							</a>
+							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+								<i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i>
+							</a>
 						</td>
 					</tr>
 				</tbody>
