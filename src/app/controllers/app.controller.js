@@ -9,7 +9,8 @@
     $state,
     LocalStorage,
     HelperAPI,
-    Org
+    Org,
+    Contacts
   ){
     /* check login */
     $rootScope.isLogged = LocalStorage.get('access_token');
@@ -18,14 +19,30 @@
     else
       $state.go('contact');
     /* ------------------ */
+    /* Load org*/
     $rootScope.$on('needLoadOrgs', async function (event, data) {
       console.log('needLoadOrgs:', data);
-      if(data.value) {
-        // var result = await Org.loadOrg();
-        var result = Org.listOrgs; 
-        if(_.size(result)) console.log('ket qua: ', Org.current, Org.listOrgs, result);
+      if(data) {
+        $rootScope.loadingOrg = true;
+        var listOrgs = await Org.listAll();
+        console.log('listContacts:', listOrgs);
+        $rootScope.loadingOrg = false; 
+        $rootScope.$apply();
+        $rootScope.$broadcast('needLoadContacts', true);
       }
     });
+    /* Load Contact */
+    $rootScope.$on('needLoadContacts', async function (event, data) {
+      console.log('needLoadContact:', data);
+      if(data) {
+        $rootScope.loadingContact = true;
+        var listContacts = await Contacts.listAll(Org.current);
+        console.log('listContacts:', listContacts);
+        $rootScope.loadingContact = false; 
+        $rootScope.$apply();
+      }
+    });
+    
     $scope.changeState = (state) => {
       $state.go(state);
     };

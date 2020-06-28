@@ -1,8 +1,16 @@
+/* load data MOCK */
+// const fs = require('fs');
+
+// var rawdata = fs.readFileSync('data/contact.json');
+// var Contacts = JSON.parse(rawdata);
+// console.log(Contacts);
+var Contacts = require('./data/contact');
+var Orgs = require('./data/org')
+/* --------------- */
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var _ = require('lodash');
-
 const app = express();
 app.use('/templates', express.static(__dirname + '/templates'))
 app.use('/media', express.static(__dirname + '/media'));
@@ -32,4 +40,17 @@ app.get('/callback', (req, res) => {
     });
   }
   res.redirect('/');
+})
+
+app.get('/contacts', (req, res) => {
+  console.log('GET /contacts');
+  console.log(req.query);
+  res.status(200).send(Contacts);
+})
+
+
+app.get('/orgs', (req, res) => {
+  console.log('GET /orgs');
+  console.log(req.query);
+  res.status(200).send(Orgs);
 })
