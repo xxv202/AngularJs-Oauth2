@@ -17,5 +17,5 @@ if not, copy bower_components into src/libs
 # Install host service  
 - [ ] npm install
 - [ ] node index.js
-
-# Flow
+# rootURL : http://localhost:3000
+# CONFIG clientid && client secret : global.js
