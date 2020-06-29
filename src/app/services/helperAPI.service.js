@@ -25,6 +25,18 @@
                 .then( result =>{
                   return result.data;
                 })
+      },
+      updateContact: function(data){
+        return $http(data)
+                .then(result => {
+                  return result.data;
+                })
+      },
+      createContact: function(data){
+        return $http(data)
+                .then(result => {
+                  return result.data;
+                })
       }
     }
   })

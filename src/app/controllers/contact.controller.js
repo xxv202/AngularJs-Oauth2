@@ -25,11 +25,24 @@
       ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', { contact : contact }, 
                 function(data){
                   console.log('edit:', data);
-                  if(data.edit){
-                    $rootScope.contacts[index] = data.contact;
-                    // $rootScope.$apply();
-                    ErrorService.error("Update contact successfully!", 2000, "SUCCESS");
-                  }
+                  if(!data.edit) return;
+                      
+                  HelperAPI.updateContact({
+                        method: 'PUT',
+                        url: `${rootUrl}/contacts`,
+                        headers: {
+                            "Content-Type": "application/json;charset=UTF-8"
+                          },
+                        data: data.contact
+                      })
+                      .then(data => {
+                        $rootScope.contacts[index] = data.contact;
+                        ErrorService.error("Update contact successfully!", 2000, "SUCCESS");
+                      })
+                      .catch(error=>{
+                        ErrorService.error("Failed! Can't edit contact", 2000);
+                        return error;
+                      });
                 }
       );
     }
@@ -39,11 +52,25 @@
       ModalService.openModal('addContact.html', 'AddContactController', 'lg', {}, 
         function(data){
           console.log('add:', data);
-          if(data.add){
-            $rootScope.contacts.push(data.contact);
-            // $rootScope.$apply();
-            ErrorService.error("Add contact successfully!", 2000, "SUCCESS");
-          }
+          if(!data.add) return;
+              
+          HelperAPI.updateContact({
+                method: 'PUT',
+                url: `${rootUrl}/contacts`,
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8"
+                  },
+                data: data.contact
+              })
+              .then(data => {
+                $rootScope.contacts.push(data.contact);
+                ErrorService.error("Add contact successfully!", 2000, "SUCCESS");
+              })
+              .catch(error=>{
+                ErrorService.error("Failed! Can't add contact", 2000);
+                return error;
+              });
+
         }
       )
     }
