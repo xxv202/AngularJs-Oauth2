@@ -11,7 +11,9 @@
         $scope.close = function () {
            $uibModalInstance.close({
                add: 1,
-               contact: $scope.contact
+               contact: _.assign($scope.contact, {
+                            Name: $scope.Name
+                        })
            });
        };
 
