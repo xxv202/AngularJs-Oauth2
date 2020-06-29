@@ -12,16 +12,17 @@
     LocalStorage,
     ErrorService
   ) {
+    $rootScope.doLoggingIn = true;
     var query = {
       method: 'GET',
       url: 'https://login.xero.com/identity/connect/authorize',
       params: {
         response_type : 'code',
-        client_id: 'ED7F340B3C6B47E9A53A92FA8E6F94E1',
+        client_id: cliend_id,
         redirect_uri: `${rootUrl}/callback`,
         scope: 'openid profile email offline_access accounting.transactions accounting.contacts',
         state: '123',
-        client_secret: 'Y2ypE5A_oS369fgkfeXd6sILdniInjUmg-IhPHeSgwgqtgoT'
+        client_secret: cliend_secret
       }
     }
     var needLogin = true, code;
@@ -92,6 +93,7 @@
       } else {
         ErrorService.error('Login: fail! Please login again', 1000);
       }
+      $rootScope.doLoggingIn = false;
     };
 
   })

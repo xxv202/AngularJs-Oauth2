@@ -18,6 +18,4 @@ if not, copy bower_components into src/libs
 - [ ] npm install
 - [ ] node index.js
 
-
-
 # Flow
