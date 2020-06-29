@@ -49,6 +49,7 @@ app.get('/contacts', (req, res) => {
   console.log('GET /contacts');
   res.status(200).send(Contacts);
 })
+
 app.post('/contacts', (req, res) => {
   console.log('POST /contacts');
   var contact = req.body;

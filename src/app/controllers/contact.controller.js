@@ -55,15 +55,15 @@
           if(!data.add) return;
               
           HelperAPI.updateContact({
-                method: 'PUT',
+                method: 'POST',
                 url: `${rootUrl}/contacts`,
                 headers: {
                     "Content-Type": "application/json;charset=UTF-8"
                   },
                 data: data.contact
               })
-              .then(data => {
-                $rootScope.contacts.push(data.contact);
+              .then(contact => {
+                $rootScope.contacts.unshift(contact);
                 ErrorService.error("Add contact successfully!", 2000, "SUCCESS");
               })
               .catch(error=>{

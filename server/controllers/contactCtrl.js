@@ -15,7 +15,7 @@ module.exports = function ContactCtrl(app, Contacts){
         var icontact = _.assign(templateContact, contact);
         Contacts.unshift(icontact);
         console.log('add: ', !!_.first(Contacts));
-        return true;
+        return _.first(Contacts);
     }
     return {
         update,
