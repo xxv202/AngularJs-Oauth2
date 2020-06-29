@@ -4,14 +4,10 @@ module.exports = function ContactCtrl(app, Contacts){
     
     function update(contact){
         var result = false;
-        _.map(Contacts, icontact => {
-            if(_.isEqual(_.get(icontact, 'ContactID', false), _.get(contact, 'ContactID', true)))
-                {
-                    result = true; 
-                    return contact;
-                }
-            return icontact;
-        });
+        console.log(contact);
+        var index = _.findIndex(Contacts, Contact => Contact.ContactID === contact.ContactID);
+        if(index < 0) return false;
+        Contacts[index] = contact;
         console.log('update: ', result);
         return result;
     }

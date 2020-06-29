@@ -35,7 +35,7 @@
                           },
                         data: data.contact
                       })
-                      .then(data => {
+                      .then(data1 => {
                         $rootScope.contacts[index] = data.contact;
                         ErrorService.error("Update contact successfully!", 2000, "SUCCESS");
                       })
@@ -77,5 +77,9 @@
     $scope._size = _size;
     function _size(data) {
       return _.size(data);
+    }
+    $scope.render = render;
+    function render(data){
+      return (typeof data === 'object')? '': data;
     }
   })

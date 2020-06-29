@@ -38,11 +38,11 @@
 						<td>{{contact.Name}}</td>
 						<td>{{contact.EmailAddress}}</td>
 						<td>
-							<div>{{contact.Addresses[0].AddressLine1}}</div> 
+							<div>{{ render(contact.Addresses) }}</div> 
 						</td>
 						<td>
 							<div>
-								<div>{{contact.Phones[0].PhoneNumber}}</div> 
+								<div>{{ render(contact.Phones) }}</div> 
 							</div>
 						</td>
 						<td>

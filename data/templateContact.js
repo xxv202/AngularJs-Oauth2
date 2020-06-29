@@ -9,28 +9,8 @@ var tem = {
     "FirstName": "",
     "LastName": "",
     "EmailAddress": "",
-    "Addresses": [
-        {
-            "AddressType": "POBOX"
-        },
-        {
-            "AddressType": "STREET"
-        }
-    ],
-    "Phones": [
-        {
-            "PhoneType": "DDI"
-        },
-        {
-            "PhoneType": "DEFAULT"
-        },
-        {
-            "PhoneType": "FAX"
-        },
-        {
-            "PhoneType": "MOBILE"
-        }
-    ],
+    "Addresses": "",
+    "Phones": "",
     "UpdatedDateUTC": "/Date(1592988434017+0000)/",
     "ContactGroups": [],
     "IsSupplier": false,
