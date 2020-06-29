@@ -7,7 +7,7 @@
         return new ModalService();
         function ModalService(){
             
-            function openModal(templateName, controllerName, size, params){
+            function openModal(templateName, controllerName, size, params, callback){
                 var template = `templates/${templateName}`;
                 var modal = $uibModal.open({
                     animation: true,
@@ -24,11 +24,10 @@
                         }
                     }
                 });
-                console.log(modal);
                 modal.result.then(
                     // callback close
                     (result)=>{
-                        console.log('close:', result);
+                        if(callback) callback(result);
                     },  
                     // callback dismiss
                     (result)=>{

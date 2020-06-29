@@ -3,14 +3,15 @@
   
   angular
   .module("mainApp")
-  .controller("DeleteContactController", 
+  .controller("AddContactController", 
     function($scope, $uibModalInstance, Contact) {
         console.log('Contacts', Contact);
         $scope.contact = Contact;
         
         $scope.close = function () {
            $uibModalInstance.close({
-               delete: 1
+               add: 1,
+               contact: $scope.contact
            });
        };
 

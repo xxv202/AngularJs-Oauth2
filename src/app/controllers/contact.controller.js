@@ -9,7 +9,8 @@
     LocalStorage,
     Org,
     Contacts,
-    ModalService
+    ModalService,
+    ErrorService
   ) {
 
     /* require login */
@@ -19,13 +20,32 @@
       $rootScope.$broadcast('needLoadOrgs', true);
     $scope.edit = edit;
 
-    function edit(contact, ithis){
-      console.log(contact, ithis);
-      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', { contact : contact } );
+    function edit(contact, index){
+      console.log(contact, index);
+      ModalService.openModal('detailContact.html', 'DetailContactController', 'lg', { contact : contact }, 
+                function(data){
+                  console.log('edit:', data);
+                  if(data.edit){
+                    $rootScope.contacts[index] = data.contact;
+                    // $rootScope.$apply();
+                    ErrorService.error("Update contact successfully!", 2000, "SUCCESS");
+                  }
+                }
+      );
     }
-    $scope.delete = deleteContact;
-    function deleteContact(contact){
-      ModalService.openModal('deleteContact.html', 'DeleteContactController', 'lg', { contact : contact });
+
+    $scope.add = addContact;
+    function addContact(){
+      ModalService.openModal('addContact.html', 'AddContactController', 'lg', {}, 
+        function(data){
+          console.log('add:', data);
+          if(data.add){
+            $rootScope.contacts.push(data.contact);
+            // $rootScope.$apply();
+            ErrorService.error("Add contact successfully!", 2000, "SUCCESS");
+          }
+        }
+      )
     }
     $scope._size = _size;
     function _size(data) {

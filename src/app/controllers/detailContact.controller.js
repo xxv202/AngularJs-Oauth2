@@ -8,11 +8,12 @@
         console.log('Contacts', Contact);
         $scope.contact = Contact;
         
-        $scope.ok = function () {
-           $uibModalInstance.close({
-               edit: 1
+        $scope.close = function () {
+            $uibModalInstance.close({
+               edit: 1,
+               contact: $scope.contact
            });
-       };
+        };
 
        $scope.dismiss = function () {
            $uibModalInstance.dismiss('cancel');
