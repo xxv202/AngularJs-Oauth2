@@ -38,15 +38,11 @@
 						<td>{{contact.Name}}</td>
 						<td>{{contact.EmailAddress}}</td>
 						<td>
-							<div ng-repeat="address in contact.Addresses">
-								<div>Type: {{address.AddressType}}</div> 
-								<div ng-if="address.AddressLine1">AddressLine: {{address.AddressLine1}}</div> 
-							</div>
+							<div>{{contact.Addresses[0].AddressLine1}}</div> 
 						</td>
 						<td>
-							<div ng-repeat="phone in contact.Phones">
-								<div>Type: {{phone.PhoneType}}</div> 
-								<div ng-if="phone.PhoneNumber">Number: {{phone.PhoneNumber}}</div> 
+							<div>
+								<div>{{contact.Phones[0].PhoneNumber}}</div> 
 							</div>
 						</td>
 						<td>
